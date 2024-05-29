@@ -22,8 +22,7 @@ Create Product Entity in Entities Layer:
 
 In the ECommerceSystem.Entities project, create a class named Product.cs with the following properties:
 
-csharp
-Kodu kopyala
+
 namespace ECommerceSystem.Entities
 {
     public class Product
@@ -40,8 +39,7 @@ Define IProductDal Interface:
 
 In the ECommerceSystem.DataAccess project, create an interface named IProductDal.cs with the following methods:
 
-csharp
-Kodu kopyala
+
 using ECommerceSystem.Entities;
 using System.Collections.Generic;
 
@@ -60,8 +58,7 @@ Create InMemoryProductDal Class:
 
 In the ECommerceSystem.DataAccess project, create a class named InMemoryProductDal.cs and implement the IProductDal interface:
 
-csharp
-Kodu kopyala
+
 using ECommerceSystem.Entities;
 using System.Collections.Generic;
 using System.Linq;
@@ -134,7 +131,7 @@ Deploy the project to a server or cloud platform.
 How to Run
 Clone the repository:
 bash
-Kodu kopyala
+
 git clone https://github.com/yourusername/ECommerceSystem.git
 Open the solution in Visual Studio.
 Set ECommerceSystem.ConsoleApp as the startup project.
