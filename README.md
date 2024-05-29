@@ -132,7 +132,7 @@ How to Run
 Clone the repository:
 bash
 
-git clone https://github.com/yourusername/ECommerceSystem.git
+git clone https://github.com/onurkerembozkurt/ECommerceSystem.git
 Open the solution in Visual Studio.
 Set ECommerceSystem.ConsoleApp as the startup project.
 Build and run the project.
