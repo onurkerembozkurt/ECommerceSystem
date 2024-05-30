@@ -1,4 +1,6 @@
-﻿using Entity.Concrete;
+﻿using Core.DataAccess;
+using Entity.Abstract;
+using Entity.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,12 +9,8 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract
 {
-    public interface ISupplierDal
+    public interface ISupplierDal:IEntityRepository<Supplier>
     {
-        public void Add(Supplier supplier);
-        public void Delete(Supplier supplier);
-        public void Update(Supplier supplier);
-        public List<Supplier> GetAll();
-        public Supplier GetById(int id);
+      
     }
 }

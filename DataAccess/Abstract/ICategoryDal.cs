@@ -1,4 +1,6 @@
-﻿using Entity.Concrete;
+﻿using Core.DataAccess;
+using Entity.Abstract;
+using Entity.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,13 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract
 {
-    public interface ICategoryDal
+    public interface ICategoryDal:IEntityRepository<Category>
     {
-        public void Add(Category category);
-        public void Delete(Category category);
-        public void Update(Category category);
-        public List<Category> GetAll();
-        public Category GetById(int id);
-
     }
 }
