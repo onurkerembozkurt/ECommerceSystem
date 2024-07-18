@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entity.Concrete;
 using System;
@@ -14,31 +16,37 @@ namespace Business.Concrete
         ICategoryDal _categoryDal;
         public CategoryManager(ICategoryDal categoryDal)
         {
-            _categoryDal = categoryDal;
-        }
-        public void Add(Category category)
-        {
-           _categoryDal.Add(category);
+                _categoryDal = categoryDal;
         }
 
-        public void Delete(Category category)
+        public IResult Add(Category category)
+        {
+            _categoryDal.Add(category);
+            return new SuccessResult(Messages.CategoryAdded);
+        }
+
+        public IResult Delete(Category category)
         {
             _categoryDal.Delete(category);
+            return new SuccessResult(Messages.CategoryDeleted);
+
         }
 
-        public List<Category> GetAll()
+        public IDataResult<List<Category>> GetAll()
         {
-            return _categoryDal.GetAll();
+            
+            return new SuccessDataResult<List<Category>>(_categoryDal.GetAll(),Messages.CategoryGetAll);
         }
 
-        public Category GetById(int id)
+        public IDataResult<Category> GetById(int id)
         {
-            return _categoryDal.GetById(id);
+            return new SuccessDataResult<Category>(_categoryDal.Get(c=>c.Id==id),Messages.CategoryGetById);
         }
 
-        public void Update(Category category)
+        public IResult Update(Category category)
         {
-           _categoryDal.Update(category);
+            _categoryDal.Update(category);
+            return new SuccessResult(Messages.CategoryUpdated);
         }
     }
 }

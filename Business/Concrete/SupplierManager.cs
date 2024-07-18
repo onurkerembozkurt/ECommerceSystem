@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entity.Concrete;
 using System;
@@ -16,30 +18,33 @@ namespace Business.Concrete
         {
             _supplierDal = supplierDal;
         }
-
-        public void Add(Supplier supplier)
+        public IResult Add(Supplier supplier)
         {
-            _supplierDal.Add(supplier);
+           _supplierDal.Add(supplier);
+            return new SuccessResult(Messages.SupplierAdded);
         }
 
-        public void Delete(Supplier supplier)
+        public IResult Delete(Supplier supplier)
         {
             _supplierDal.Delete(supplier);
+            return new SuccessResult(Messages.SupplierDeleted);
         }
 
-        public void Update(Supplier supplier)
+        public IDataResult<List<Supplier>> GetAll()
+        {
+            return new SuccessDataResult<List<Supplier>>(_supplierDal.GetAll(),Messages.SupplierGetAll);
+
+        }
+
+        public IDataResult<Supplier> GetById(int id)
+        {
+            return new SuccessDataResult<Supplier>(_supplierDal.Get(s => s.Id == id));
+        }
+
+        public IResult Update(Supplier supplier)
         {
            _supplierDal.Update(supplier);
-        }
-
-        public List<Supplier> GetAll()
-        {
-            return _supplierDal.GetAll();
-        }
-
-        public Supplier GetById(int id)
-        {
-          return  _supplierDal.GetById(id);
+            return new SuccessResult(Messages.SupplierUpdated);
         }
     }
 }

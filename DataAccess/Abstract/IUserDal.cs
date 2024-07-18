@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract
 {
-    public interface ISupplierDal:IEntityRepository<Supplier>
+    public interface IUserDal:IEntityRepository<User>
     {
-      
+
     }
 }

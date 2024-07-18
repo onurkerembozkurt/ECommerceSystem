@@ -3,6 +3,7 @@ using Entity.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -27,9 +28,19 @@ namespace DataAccess.Concrete.InMemory
             _suppliers.Remove(supplierToDelete);
         }
 
+        public Supplier Get(Expression<Func<Supplier, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Supplier> GetAll()
         {
             return _suppliers;
+        }
+
+        public List<Supplier> GetAll(Expression<Func<Supplier, bool>> filter = null)
+        {
+            throw new NotImplementedException();
         }
 
         public Supplier GetById(int id)

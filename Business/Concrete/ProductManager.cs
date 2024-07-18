@@ -1,6 +1,9 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entity.Concrete;
+using Entity.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,31 +17,39 @@ namespace Business.Concrete
         IProductDal _productDal;
         public ProductManager(IProductDal productDal)
         {
-                _productDal = productDal;
+            _productDal = productDal;
         }
-        public void Add(Product product)
+        public IResult Add(Product product)
         {
-           _productDal.Add(product);
+            _productDal.Add(product);
+            return new SuccessResult(Messages.ProductAdded);
         }
 
-        public void Delete(Product product)
+        public IResult Delete(Product product)
         {
             _productDal.Delete(product);
+            return new SuccessResult(Messages.ProductDeleted);
         }
 
-        public List<Product> GetAll()
+        public IDataResult<List<Product>> GetAll()
         {
-            return _productDal.GetAll();
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(),Messages.ProductGetAll);
         }
 
-        public Product GetById(int id)
+        public IDataResult<Product> GetById(int id)
         {
-            return _productDal.GetById(id);
+            return new SuccessDataResult<Product>(_productDal.Get(p => p.Id == id), Messages.ProductGetById);
         }
 
-        public void Update(Product product)
+        public IDataResult<List<ProductDetailDto>> GetProductDetailDtos()
+        {
+            return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductDetailDtos(), Messages.ProductGetAll);
+        }
+
+        public IResult Update(Product product)
         {
             _productDal.Update(product);
+            return new SuccessResult(Messages.ProductUpdated);
         }
     }
 }
